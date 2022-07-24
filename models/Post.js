@@ -20,8 +20,7 @@ Post.init(
       allowNull: true,
     },
     post_body: {
-      type: DataTypes.TEXT,
-      allowNull: false,
+      type: DataTypes.STRING,
       defaultValue: "",
     },
     user_id: {

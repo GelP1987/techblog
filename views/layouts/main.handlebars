@@ -4,21 +4,27 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Tech Blog</title>
+    <link rel="stylesheet" href="https://unpkg.com/@picocss/pico@latest/css/pico.min.css">
     <link rel="stylesheet" href="/css/stylesheet.css" />
   </head>
 
-  <body>
+  <body data-theme="dark">
     <div class="wrapper">
       <header>
+       <div class="title-padding">
         <h1>
-          <a href="/">Tech Blog</a>
+          <a href="/" class="a-title">Tech Blog</a>
         </h1>
+        </div>
         <nav>
+          <a href="/" class="home-nav" class="home-nav1">homepage</a>
+          &nbsp; &nbsp;&nbsp; &nbsp;
           {{#if loggedIn}}
-            <a href="/dashboard">dashboard</a>
+            <a href="/dashboard" class="home-nav">dashboard</a>
+            
             <button id="logout" class="btn-no-style">logout</button>
           {{else}}
-            <a href="/login">login</a>
+            <a href="/login" class="home-nav">login</a>
           {{/if}}
         </nav>
       </header>

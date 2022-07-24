@@ -1,7 +1,6 @@
 <article class="post">
   <div class="title">
     <a href="/post/{{id}}">{{title}}</a>
-    <span>({{format_url post_url}})</span>
   </div>
   <div class="meta">
     By
@@ -12,4 +11,5 @@
     <a href="/post/{{id}}">{{comments.length}}
       {{format_plural "comment" comments.length}}</a>
   </div>
+  <span>{{post_body}}</span>
 </article>

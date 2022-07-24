@@ -21,7 +21,7 @@ router.get("/:id", (req, res) => {
     include: [
       {
         model: Post,
-        attributes: ["id", "title", "post_url", "created_at"],
+        attributes: ["id", "title", "post_url", "post_body", "created_at"],
       },
       {
         model: Comment,
@@ -78,18 +78,14 @@ router.post("/login", (req, res) => {
     },
   }).then((dbUserData) => {
     if (!dbUserData) {
-      res
-        .status(400)
-        .json({ message: "The credentials entered are incorrect!" });
+      res.status(400).json({ message: "Bad username and/or password!" });
       return;
     }
 
     const validPassword = dbUserData.checkPassword(req.body.password);
 
     if (!validPassword) {
-      res
-        .status(400)
-        .json({ message: "The credentials entered are incorrect!" });
+      res.status(400).json({ message: "Bad username and/or password!" });
       return;
     }
 
@@ -98,7 +94,7 @@ router.post("/login", (req, res) => {
       req.session.username = dbUserData.username;
       req.session.loggedIn = true;
 
-      res.json({ user: dbUserData, message: "Logged on!" });
+      res.json({ user: dbUserData, message: "You are now logged in!" });
     });
   });
 });
@@ -122,7 +118,7 @@ router.put("/:id", (req, res) => {
   })
     .then((dbUserData) => {
       if (!dbUserData) {
-        res.status(404).json({ message: "Credentials entered were incorrect" });
+        res.status(404).json({ message: "No user found with this id" });
         return;
       }
       res.json(dbUserData);
@@ -141,7 +137,7 @@ router.delete("/:id", (req, res) => {
   })
     .then((dbUserData) => {
       if (!dbUserData) {
-        res.status(404).json({ message: "Credentials entered were incorrect" });
+        res.status(404).json({ message: "No user found with this id" });
         return;
       }
       res.json(dbUserData);
